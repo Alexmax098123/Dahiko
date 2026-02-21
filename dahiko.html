@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dahiko Sugam – Fresh Curd Drink</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #1a7a52;
+  --green-dark: #0f4d33;
+  --green-light: #2ecc87;
+  --yellow: #f5c800;
+  --yellow-light: #ffe94d;
+  --mint: #e8fdf3;
+  --cream: #fffdf5;
+  --gray: #f4f4f0;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Nunito', sans-serif; background: var(--cream); color: #1a1a1a; overflow-x: hidden; cursor: none; }
+
+/* CURSOR */
+.cursor { width: 14px; height: 14px; background: var(--yellow); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); mix-blend-mode: multiply; }
+.cursor-ring { width: 38px; height: 38px; border: 2px solid var(--green); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: all 0.12s ease; }
+
+/* NAV */
+nav { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 500; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border: 1.5px solid rgba(26,122,82,0.15); border-radius: 50px; padding: 10px 16px 10px 28px; display: flex; align-items: center; gap: 24px; box-shadow: 0 4px 30px rgba(0,0,0,0.08); white-space: nowrap; }
+.nav-logo { font-family: 'Righteous', cursive; font-size: 1.25rem; color: var(--green-dark); display: flex; align-items: center; gap: 8px; }
+.nav-logo .dot { width: 8px; height: 8px; background: var(--yellow); border-radius: 50%; }
+.nav-links { display: flex; gap: 2px; }
+.nav-links a { font-size: 0.82rem; font-weight: 700; color: #555; text-decoration: none; padding: 6px 12px; border-radius: 20px; transition: all 0.2s; }
+.nav-links a:hover { background: var(--mint); color: var(--green); }
+/* NAV ORDER BUTTON — dark green */
+.nav-order-btn { background: var(--green-dark); color: white; border: none; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.82rem; padding: 10px 20px; border-radius: 50px; cursor: none; transition: all 0.25s; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 14px rgba(15,77,51,0.3); }
+.nav-order-btn:hover { background: var(--green); transform: scale(1.04); }
+
+/* HERO */
+.hero { min-height: 100vh; background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 110px 8% 60px; position: relative; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.28; animation: blobmove 8s ease-in-out infinite; pointer-events: none; }
+.blob1 { width: 480px; height: 480px; background: var(--green-light); top: -100px; right: -80px; }
+.blob2 { width: 380px; height: 380px; background: var(--yellow); bottom: -80px; left: -80px; animation-delay: 2s; }
+.blob3 { width: 220px; height: 220px; background: #a8f0d0; top: 40%; right: 30%; animation-delay: 4s; }
+@keyframes blobmove { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(20px,-30px) scale(1.05)} 66%{transform:translate(-15px,20px) scale(0.95)} }
+
+.hero-left { position: relative; z-index: 2; }
+.hero-chip { display: inline-flex; align-items: center; gap: 8px; background: var(--green); color: white; font-size: 0.72rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 8px 18px; border-radius: 50px; margin-bottom: 28px; animation: slidein 0.6s ease both; }
+.hero-chip .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow-light); animation: pulse 1.5s ease infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+@keyframes slidein { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+
+.hero-h1 { font-family: 'Righteous', cursive; font-size: clamp(3.8rem, 8vw, 7rem); line-height: 0.95; margin-bottom: 20px; animation: slidein 0.7s 0.1s ease both; }
+.hero-h1 .line1 { color: var(--green-dark); display: block; }
+.hero-h1 .line2 { display: block; background: linear-gradient(135deg, var(--yellow), var(--green-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+.hero-desc { font-size: 1rem; font-weight: 600; color: #555; line-height: 1.7; max-width: 420px; margin-bottom: 36px; animation: slidein 0.7s 0.2s ease both; }
+.hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; animation: slidein 0.7s 0.3s ease both; }
+
+/* HERO ORDER BUTTON — dark green matching nav */
+.btn-order-main { background: var(--green-dark); color: white; border: none; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.95rem; padding: 16px 32px; border-radius: 50px; cursor: none; transition: all 0.25s; box-shadow: 0 6px 24px rgba(15,77,51,0.35); display: inline-flex; align-items: center; gap: 8px; }
+.btn-order-main:hover { background: var(--green); transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 32px rgba(15,77,51,0.45); }
+.btn-secondary { background: transparent; color: var(--green-dark); border: 2px solid var(--green-dark); text-decoration: none; font-weight: 800; font-size: 0.88rem; padding: 14px 26px; border-radius: 50px; transition: all 0.25s; display: inline-flex; align-items: center; gap: 8px; }
+.btn-secondary:hover { background: var(--green-dark); color: white; transform: translateY(-2px); }
+.price-pill { background: var(--yellow); color: var(--green-dark); font-weight: 900; font-size: 1rem; padding: 14px 22px; border-radius: 50px; border: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 6px 20px rgba(245,200,0,0.35); }
+
+.hero-right { display: flex; justify-content: center; align-items: center; position: relative; z-index: 2; }
+.bottle-scene { position: relative; width: 420px; animation: floatbottle 5s ease-in-out infinite; }
+@keyframes floatbottle { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-18px) rotate(1deg)} }
+.bottle-scene img { width: 100%; filter: drop-shadow(-10px 30px 50px rgba(0,0,0,0.25)); }
+
+/* MARQUEE */
+.marquee-wrap { background: var(--green-dark); padding: 15px 0; overflow: hidden; display: flex; }
+.marquee-track { display: flex; animation: marquee 20s linear infinite; white-space: nowrap; }
+.marquee-track span { color: white; font-weight: 800; font-size: 0.88rem; letter-spacing: 1px; text-transform: uppercase; padding: 0 24px; display: inline-flex; align-items: center; gap: 14px; }
+.marquee-track span::after { content: '✦'; color: var(--yellow); }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* FEATURES */
+.features { padding: 100px 8%; background: white; }
+.section-top { text-align: center; margin-bottom: 60px; }
+.tag { display: inline-block; background: var(--mint); color: var(--green); font-size: 0.72rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 7px 18px; border-radius: 50px; margin-bottom: 14px; }
+.big-title { font-family: 'Righteous', cursive; font-size: clamp(2rem, 4vw, 3rem); color: var(--green-dark); line-height: 1.1; }
+.feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.feat-card { background: var(--cream); border-radius: 28px; padding: 36px 28px; border: 2px solid transparent; transition: all 0.3s; cursor: none; }
+.feat-card:hover { transform: translateY(-8px); border-color: var(--green-light); background: #f0fdf8; }
+.feat-icon { font-size: 2.6rem; margin-bottom: 18px; display: block; transition: transform 0.3s; }
+.feat-card:hover .feat-icon { transform: scale(1.2) rotate(-5deg); }
+.feat-card h3 { font-family: 'Righteous', cursive; font-size: 1.2rem; color: var(--green-dark); margin-bottom: 10px; }
+.feat-card p { font-size: 0.9rem; color: #666; line-height: 1.7; font-weight: 600; }
+
+/* REVIEWS */
+.reviews-section { padding: 100px 8%; background: var(--green-dark); position: relative; overflow: hidden; }
+.reviews-section::before { content: '"'; font-family: 'Righteous', cursive; font-size: 28rem; line-height: 1; color: rgba(255,255,255,0.03); position: absolute; top: -40px; left: -20px; pointer-events: none; }
+.reviews-section .tag { background: rgba(255,255,255,0.1); color: var(--yellow-light); }
+.reviews-section .big-title { color: white; }
+.reviews-top { margin-bottom: 50px; }
+.rating-summary { display: flex; align-items: center; gap: 40px; margin-bottom: 50px; flex-wrap: wrap; }
+.rating-big { text-align: center; flex-shrink: 0; }
+.rating-num { font-family: 'Righteous', cursive; font-size: 5rem; line-height: 1; background: linear-gradient(135deg, var(--yellow), var(--yellow-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.rating-stars-big { font-size: 1.2rem; letter-spacing: 3px; margin: 4px 0; }
+.rating-count { color: rgba(255,255,255,0.4); font-size: 0.8rem; font-weight: 700; }
+.rating-bars { flex: 1; min-width: 200px; }
+.rbar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.rbar-label { font-size: 0.76rem; color: rgba(255,255,255,0.5); font-weight: 700; width: 28px; flex-shrink: 0; }
+.rbar-track { flex: 1; height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+.rbar-fill { height: 100%; background: var(--yellow); border-radius: 3px; transition: width 1.2s cubic-bezier(.16,1,.3,1); width: 0; }
+.rbar-count { font-size: 0.76rem; color: rgba(255,255,255,0.35); font-weight: 700; width: 28px; text-align: right; }
+.slider-wrap { overflow: hidden; }
+.slider-track { display: flex; gap: 22px; transition: transform 0.5s cubic-bezier(.16,1,.3,1); }
+.review-card { min-width: calc(33.33% - 16px); background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.1); border-radius: 28px; padding: 34px 30px; flex-shrink: 0; transition: all 0.3s; cursor: none; }
+.review-card:hover { background: rgba(255,255,255,0.1); border-color: var(--yellow); transform: translateY(-6px); }
+.review-stars { margin-bottom: 14px; font-size: 1rem; letter-spacing: 2px; }
+.review-text { font-size: 0.95rem; font-weight: 600; color: rgba(255,255,255,0.82); line-height: 1.75; margin-bottom: 26px; font-style: italic; }
+.review-author { display: flex; align-items: center; gap: 13px; }
+.review-avatar { width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.15); flex-shrink: 0; }
+.review-name { font-weight: 800; color: white; font-size: 0.92rem; }
+.review-loc { font-size: 0.76rem; color: rgba(255,255,255,0.42); font-weight: 600; margin-top: 2px; }
+.review-tag { display: inline-block; margin-top: 5px; background: var(--yellow); color: var(--green-dark); font-size: 0.66rem; font-weight: 800; padding: 3px 10px; border-radius: 20px; }
+.slider-controls { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 44px; }
+.slider-btn { width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.15); color: white; font-size: 1.1rem; cursor: none; transition: all 0.25s; display: flex; align-items: center; justify-content: center; }
+.slider-btn:hover { background: var(--yellow); color: var(--green-dark); border-color: var(--yellow); transform: scale(1.1); }
+.slider-dots { display: flex; gap: 8px; }
+.slider-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: none; transition: all 0.3s; }
+.slider-dot.active { background: var(--yellow); width: 24px; border-radius: 4px; }
+
+/* NUTRITION */
+.nutrition-section { padding: 100px 8%; background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.nut-card { background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.08); border: 2px solid var(--gray); }
+.nut-header { background: var(--green-dark); padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; }
+.nut-header h3 { font-family: 'Righteous', cursive; font-size: 1.2rem; color: white; }
+.nut-header .per { color: var(--yellow-light); font-size: 0.78rem; font-weight: 700; }
+.nut-body { padding: 8px 0; }
+.nut-row { display: flex; justify-content: space-between; align-items: center; padding: 13px 28px; border-bottom: 1px solid var(--gray); transition: background 0.2s; cursor: none; }
+.nut-row:hover { background: var(--mint); }
+.nut-row:last-child { border-bottom: none; }
+.nut-label { font-weight: 700; font-size: 0.9rem; color: #444; }
+.nut-bar-wrap { flex: 1; margin: 0 18px; height: 6px; background: var(--gray); border-radius: 3px; overflow: hidden; }
+.nut-bar { height: 100%; background: linear-gradient(90deg, var(--green-light), var(--green)); border-radius: 3px; width: 0; transition: width 1s ease; }
+.nut-val { font-weight: 900; font-size: 0.92rem; color: var(--green-dark); min-width: 52px; text-align: right; }
+.nut-right .tag { margin-bottom: 14px; }
+.nut-right .big-title { margin-bottom: 18px; }
+.nut-right p { font-size: 0.98rem; color: #555; line-height: 1.8; font-weight: 600; margin-bottom: 14px; }
+.nut-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.nut-badge { background: var(--mint); color: var(--green); border: 1.5px solid rgba(46,204,135,0.3); font-size: 0.8rem; font-weight: 800; padding: 9px 16px; border-radius: 50px; transition: all 0.2s; cursor: none; }
+.nut-badge:hover { background: var(--green); color: white; transform: scale(1.05); }
+
+/* CTA */
+.cta-section { margin: 0 4% 70px; background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%); border-radius: 40px; padding: 70px 8%; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 40px; position: relative; overflow: hidden; }
+.cta-section::before { content: 'SUGAM'; font-family: 'Righteous', cursive; font-size: 10rem; opacity: 0.05; position: absolute; right: -20px; top: 50%; transform: translateY(-50%); color: white; white-space: nowrap; pointer-events: none; }
+.cta-section h2 { font-family: 'Righteous', cursive; font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: white; line-height: 1.1; margin-bottom: 10px; }
+.cta-section p { color: rgba(255,255,255,0.65); font-size: 0.98rem; font-weight: 600; }
+.cta-btns { display: flex; flex-direction: column; gap: 12px; min-width: 190px; }
+/* CTA ORDER BUTTON — yellow to stand out on dark green background */
+.cta-order-btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--yellow); color: var(--green-dark); border: none; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.95rem; padding: 16px 28px; border-radius: 50px; cursor: none; transition: all 0.25s; box-shadow: 0 6px 24px rgba(245,200,0,0.4); }
+.cta-order-btn:hover { background: var(--yellow-light); transform: translateY(-2px) scale(1.03); }
+.cta-email-btn { display: block; text-align: center; background: rgba(255,255,255,0.1); color: white; border: 2px solid rgba(255,255,255,0.2); font-weight: 800; font-size: 0.88rem; padding: 13px 24px; border-radius: 50px; text-decoration: none; transition: all 0.25s; cursor: none; }
+.cta-email-btn:hover { background: rgba(255,255,255,0.2); }
+
+/* FOOTER */
+footer { background: #081810; padding: 60px 8% 30px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 48px; }
+.footer-brand-name { font-family: 'Righteous', cursive; font-size: 1.9rem; color: white; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.footer-brand-name .dot { width: 10px; height: 10px; background: var(--yellow); border-radius: 50%; }
+.brand-desc { color: rgba(255,255,255,0.45); font-size: 0.88rem; line-height: 1.7; font-weight: 600; max-width: 270px; }
+footer h4 { color: rgba(255,255,255,0.35); font-size: 0.68rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+footer ul { list-style: none; }
+footer ul li { margin-bottom: 11px; }
+footer ul li a, footer ul li span { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.87rem; font-weight: 700; transition: color 0.2s; }
+footer ul li a:hover { color: var(--yellow-light); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px; display: flex; justify-content: space-between; font-size: 0.78rem; color: rgba(255,255,255,0.25); font-weight: 700; }
+
+/* MODAL */
+.modal-overlay { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.55); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal { background: white; border-radius: 32px; padding: 44px 38px; max-width: 420px; width: 92%; text-align: center; transform: scale(0.85) translateY(20px); transition: all 0.35s cubic-bezier(.16,1,.3,1); position: relative; box-shadow: 0 30px 80px rgba(0,0,0,0.22); }
+.modal-overlay.open .modal { transform: scale(1) translateY(0); }
+.modal-close { position: absolute; top: 16px; right: 20px; background: var(--gray); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; color: #666; }
+.modal-close:hover { background: #e0e0e0; transform: rotate(90deg); }
+.modal-wa-icon { width: 68px; height: 68px; background: linear-gradient(135deg, #25D366, #1aab53); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 18px; box-shadow: 0 8px 24px rgba(37,211,102,0.35); animation: wapulse 2s ease-in-out infinite; }
+@keyframes wapulse { 0%,100%{ box-shadow: 0 8px 24px rgba(37,211,102,0.35); } 50%{ box-shadow: 0 8px 40px rgba(37,211,102,0.6); } }
+.modal h2 { font-family: 'Righteous', cursive; font-size: 1.6rem; color: var(--green-dark); margin-bottom: 8px; }
+.modal-sub { color: #888; font-size: 0.88rem; font-weight: 600; line-height: 1.6; margin-bottom: 22px; }
+.modal-product { background: var(--cream); border-radius: 14px; padding: 16px 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+.modal-product .pname { font-weight: 700; font-size: 0.9rem; color: #444; }
+.modal-product .pprice { color: var(--green); font-weight: 900; }
+.modal-qty-label { font-size: 0.78rem; font-weight: 800; color: #bbb; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+.modal-qty { display: flex; align-items: center; justify-content: center; gap: 18px; margin-bottom: 8px; }
+.qty-btn { width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--green); background: white; color: var(--green); font-size: 1.3rem; font-weight: 900; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
+.qty-btn:hover { background: var(--green); color: white; transform: scale(1.1); }
+.qty-num { font-family: 'Righteous', cursive; font-size: 2rem; color: var(--green-dark); min-width: 44px; text-align: center; }
+.qty-total { font-size: 0.88rem; color: #999; font-weight: 700; margin-bottom: 22px; text-align: center; }
+.qty-total strong { color: var(--green-dark); font-size: 1rem; }
+.modal-wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; background: linear-gradient(135deg, #25D366, #1aab53); color: white; border: none; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem; padding: 17px 28px; border-radius: 50px; cursor: pointer; transition: all 0.25s; box-shadow: 0 6px 24px rgba(37,211,102,0.35); text-decoration: none; }
+.modal-wa-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(37,211,102,0.5); }
+.modal-note { margin-top: 12px; font-size: 0.73rem; color: #ccc; font-weight: 700; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(36px); transition: all 0.7s cubic-bezier(.16,1,.3,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  nav { gap: 14px; padding: 10px 16px; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 100px 6% 60px; text-align: center; }
+  .hero-desc { max-width: 100%; }
+  .hero-actions { justify-content: center; }
+  .hero-right { margin-top: 40px; }
+  .bottle-scene { width: 300px; }
+  .feat-grid { grid-template-columns: 1fr 1fr; }
+  .nutrition-section { grid-template-columns: 1fr; gap: 40px; }
+  .cta-section { grid-template-columns: 1fr; text-align: center; }
+  .cta-btns { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .review-card { min-width: calc(50% - 12px); }
+}
+@media (max-width: 600px) {
+  .feat-grid { grid-template-columns: 1fr; }
+  .review-card { min-width: 90%; }
+  .bottle-scene { width: 260px; }
+  .hero-h1 { font-size: 3.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><div class="dot"></div> DAHIKO</div>
+  <div class="nav-links">
+    <a href="#features">Why Sugam</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#nutrition">Nutrition</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="nav-order-btn" onclick="openOrder()">🛒 Order Now</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+  <div class="hero-left">
+    <div class="hero-chip"><div class="pulse"></div> Now Available in Ujjain</div>
+    <h1 class="hero-h1">
+      <span class="line1">Drink</span>
+      <span class="line2">SUGAM</span>
+    </h1>
+    <p class="hero-desc">A cool, refreshing curd-based mint drink — made with just 5 real ingredients. Pure, honest, and delicious at just ₹20.</p>
+    <div class="hero-actions">
+      <button class="btn-order-main" onclick="openOrder()">🛒 Order Now</button>
+      <a href="#contact" class="btn-secondary">Find Near You →</a>
+      <div class="price-pill">₹ 20 / 175 mL</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="bottle-scene">
+      <img src="bottle.png" alt="Dahiko Sugam Bottle"/>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Dahiko Sugam</span><span>Fresh Curd Drink</span><span>5 Real Ingredients</span><span>Made in Ujjain</span><span>Only ₹20</span><span>Refrigerate & Shake</span><span>30 Days Fresh</span><span>FSSAI Approved</span>
+    <span>Dahiko Sugam</span><span>Fresh Curd Drink</span><span>5 Real Ingredients</span><span>Made in Ujjain</span><span>Only ₹20</span><span>Refrigerate & Shake</span><span>30 Days Fresh</span><span>FSSAI Approved</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-top reveal">
+    <div class="tag">Why Choose Sugam</div>
+    <h2 class="big-title">A drink you can feel good about</h2>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card reveal"><span class="feat-icon">🧘</span><h3>Pure & Natural</h3><p>No artificial colors, no preservatives. Just 5 honest ingredients the way nature intended.</p></div>
+    <div class="feat-card reveal"><span class="feat-icon">🌿</span><h3>Minty Fresh</h3><p>Real mint blended into smooth curd gives every sip a cool, refreshing kick that energizes you.</p></div>
+    <div class="feat-card reveal"><span class="feat-icon">🦠</span><h3>Probiotic Power</h3><p>Curd is naturally loaded with live cultures that support gut health and digestion every day.</p></div>
+    <div class="feat-card reveal"><span class="feat-icon">💸</span><h3>Just ₹20</h3><p>Premium quality, pocket-friendly price. Healthy doesn't have to be expensive.</p></div>
+    <div class="feat-card reveal"><span class="feat-icon">🌱</span><h3>100% Vegetarian</h3><p>Proudly vegetarian and FSSAI approved — safe, trusted, and made with love in Ujjain.</p></div>
+    <div class="feat-card reveal"><span class="feat-icon">❄️</span><h3>Stays Fresh</h3><p>Keep it refrigerated and enjoy it fresh up to 30 days from manufacturing. Always shake well!</p></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section" id="reviews">
+  <div class="reviews-top reveal">
+    <div class="tag">Happy Customers</div>
+    <h2 class="big-title">Ujjain is loving Sugam 💚</h2>
+  </div>
+  <div class="rating-summary reveal" id="ratingBars">
+    <div class="rating-big">
+      <div class="rating-num">4.8</div>
+      <div class="rating-stars-big">⭐⭐⭐⭐⭐</div>
+      <div class="rating-count">Based on 120+ reviews</div>
+    </div>
+    <div class="rating-bars">
+      <div class="rbar-row"><span class="rbar-label">5★</span><div class="rbar-track"><div class="rbar-fill" data-w="88"></div></div><span class="rbar-count">88%</span></div>
+      <div class="rbar-row"><span class="rbar-label">4★</span><div class="rbar-track"><div class="rbar-fill" data-w="8"></div></div><span class="rbar-count">8%</span></div>
+      <div class="rbar-row"><span class="rbar-label">3★</span><div class="rbar-track"><div class="rbar-fill" data-w="3"></div></div><span class="rbar-count">3%</span></div>
+      <div class="rbar-row"><span class="rbar-label">2★</span><div class="rbar-track"><div class="rbar-fill" data-w="1"></div></div><span class="rbar-count">1%</span></div>
+      <div class="rbar-row"><span class="rbar-label">1★</span><div class="rbar-track"><div class="rbar-fill" data-w="0"></div></div><span class="rbar-count">0%</span></div>
+    </div>
+  </div>
+  <div class="slider-wrap reveal">
+    <div class="slider-track" id="sliderTrack">
+      <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Ekdum taza aur refreshing! Ghar ke bahar se aakar piya toh dil khush ho gaya. Mint ka flavour bilkul sahi hai — na zyada na kam."</p><div class="review-author"><div class="review-avatar">👨</div><div><div class="review-name">Rajesh Sharma</div><div class="review-loc">Freeganj, Ujjain</div><span class="review-tag">Regular Customer</span></div></div></div>
+      <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Sirf ₹20 mein itna achha drink? Seriously impressed! My kids love it and I feel good giving them something natural without any artificial stuff."</p><div class="review-author"><div class="review-avatar">👩</div><div><div class="review-name">Priya Malviya</div><div class="review-loc">Nanakheda, Ujjain</div><span class="review-tag">Mom of 2</span></div></div></div>
+      <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Best lassi-style drink I've had in Ujjain. Light on the stomach, perfect after lunch. I keep a few bottles in my office fridge every week!"</p><div class="review-author"><div class="review-avatar">🧑</div><div><div class="review-name">Amit Tiwari</div><div class="review-loc">Madhav Nagar, Ujjain</div><span class="review-tag">Office Regular</span></div></div></div>
+      <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Dahiko Sugam is my go-to summer drink now. The mint is so fresh and cooling — feels like a health drink but tastes like a treat. Keep it up!"</p><div class="review-author"><div class="review-avatar">👩</div><div><div class="review-name">Sunita Patel</div><div class="review-loc">Tower Chowk, Ujjain</div><span class="review-tag">Verified Buyer</span></div></div></div>
+      <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Humne apni dukaan pe rakhna shuru kiya, customers bahut pasand kar rahe hain. Students and youngsters are buying it daily. Great product!"</p><div class="review-author"><div class="review-avatar">🧔</div><div><div class="review-name">Vikram Gupta</div><div class="review-loc">Shopkeeper, Ujjain</div><span class="review-tag">Retailer</span></div></div></div>
+      <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Pure ingredients, no chemicals — this is exactly what I was looking for. You can actually taste the difference. Dahiko is doing something special here."</p><div class="review-author"><div class="review-avatar">👨</div><div><div class="review-name">Dr. Ravi Joshi</div><div class="review-loc">Freeganj, Ujjain</div><span class="review-tag">Health Conscious</span></div></div></div>
+    </div>
+  </div>
+  <div class="slider-controls reveal">
+    <button class="slider-btn" id="prevBtn">←</button>
+    <div class="slider-dots" id="sliderDots"></div>
+    <button class="slider-btn" id="nextBtn">→</button>
+  </div>
+</section>
+
+<!-- NUTRITION -->
+<section class="nutrition-section" id="nutrition">
+  <div class="nut-left reveal">
+    <div class="nut-card">
+      <div class="nut-header"><h3>Nutrition Facts</h3><span class="per">Per 175 mL</span></div>
+      <div class="nut-body">
+        <div class="nut-row" data-val="40"><span class="nut-label">⚡ Energy</span><div class="nut-bar-wrap"><div class="nut-bar" style="background:linear-gradient(90deg,#f5c800,#e5b000)"></div></div><span class="nut-val">75 kcal</span></div>
+        <div class="nut-row" data-val="28"><span class="nut-label">💪 Protein</span><div class="nut-bar-wrap"><div class="nut-bar"></div></div><span class="nut-val">2.8 g</span></div>
+        <div class="nut-row" data-val="23"><span class="nut-label">🧈 Total Fat</span><div class="nut-bar-wrap"><div class="nut-bar"></div></div><span class="nut-val">2.3 g</span></div>
+        <div class="nut-row" data-val="65"><span class="nut-label">🌾 Carbohydrate</span><div class="nut-bar-wrap"><div class="nut-bar"></div></div><span class="nut-val">10.0 g</span></div>
+        <div class="nut-row" data-val="45"><span class="nut-label">&nbsp;&nbsp;– Sugars</span><div class="nut-bar-wrap"><div class="nut-bar" style="background:linear-gradient(90deg,#2ecc87,#1a7a52)"></div></div><span class="nut-val">4.5 g</span></div>
+        <div class="nut-row" data-val="55"><span class="nut-label">🧂 Sodium</span><div class="nut-bar-wrap"><div class="nut-bar"></div></div><span class="nut-val">200 mg</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="nut-right reveal">
+    <div class="tag">Nutrition</div>
+    <h2 class="big-title">Light on calories,<br>big on goodness</h2>
+    <p>At just 75 kcal per bottle, Sugam fits perfectly into a balanced lifestyle. It's not just a drink — it's a wholesome, gut-friendly snack that refreshes and nourishes.</p>
+    <p>Curd's natural probiotics combined with mint's digestive benefits make every sip work for your body.</p>
+    <div class="nut-badges">
+      <span class="nut-badge">🧫 Probiotic-rich</span>
+      <span class="nut-badge">🌱 Vegetarian</span>
+      <span class="nut-badge">✅ FSSAI Approved</span>
+      <span class="nut-badge">📅 30-day shelf life</span>
+      <span class="nut-badge">❄️ Refrigerate & Shake</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section reveal" id="contact">
+  <div>
+    <h2>Ready to taste Sugam?</h2>
+    <p>Available in Ujjain now. Order on WhatsApp or reach out to stock it at your store.</p>
+  </div>
+  <div class="cta-btns">
+    <button class="cta-order-btn" onclick="openOrder()">🛒 Order Now</button>
+    <a href="mailto:dahiko@gmail.com" class="cta-email-btn">✉️ Email Us</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name"><div class="dot"></div> DAHIKO</div>
+      <p class="brand-desc">Crafting honest curd-based products from the heart of Ujjain, Madhya Pradesh. Pure ingredients, authentic taste.</p>
+    </div>
+    <div>
+      <h4>Products</h4>
+      <ul><li><a href="#">Sugam (175 mL)</a></li><li><span>More coming soon…</span></li></ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><span>Chandesri, Ujjain (MP) – 455001</span></li>
+        <li><a href="mailto:dahiko@gmail.com">dahiko@gmail.com</a></li>
+        <li><span>FSSAI: 21426790000279</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Dahiko. All rights reserved.</span>
+    <span>Made with ❤️ in Ujjain, MP</span>
+  </div>
+</footer>
+
+<!-- WHATSAPP ORDER MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeOrder()">✕</button>
+    <div class="modal-wa-icon">💬</div>
+    <h2>Order on WhatsApp</h2>
+    <p class="modal-sub">Select how many bottles you want — we'll send the details straight to WhatsApp!</p>
+    <div class="modal-product">
+      <span class="pname">🥛 Dahiko Sugam (175 mL)</span>
+      <span class="pprice">₹20 each</span>
+    </div>
+    <div class="modal-qty-label">Select Quantity</div>
+    <div class="modal-qty">
+      <button class="qty-btn" onclick="changeQty(-1)">−</button>
+      <div class="qty-num" id="qtyNum">1</div>
+      <button class="qty-btn" onclick="changeQty(1)">+</button>
+    </div>
+    <div class="qty-total">Total: <strong id="qtyTotal">₹20</strong></div>
+    <a class="modal-wa-btn" id="waBtn" href="#" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.107 1.51 5.833L0 24l6.335-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.373l-.36-.214-3.724.972.996-3.632-.235-.374A9.818 9.818 0 0112 2.182c5.427 0 9.818 4.391 9.818 9.818 0 5.428-4.391 9.818-9.818 9.818z"/></svg>
+      Order via WhatsApp
+    </a>
+    <div class="modal-note">⚡ You'll be redirected to WhatsApp to confirm your order</div>
+  </div>
+</div>
+
+<script>
+// CURSOR
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = -200, my = -200, rx = -200, ry = -200;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+(function tick() {
+  cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(tick);
+})();
+
+// SCROLL REVEAL
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 90); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// NUTRITION BARS
+const nutObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.nut-bar').forEach(b => { b.style.width = (e.target.dataset.val || 50) + '%'; });
+      nutObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.nut-row').forEach(r => nutObs.observe(r));
+
+// RATING BARS
+const rbo = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.rbar-fill').forEach(b => { b.style.width = b.dataset.w + '%'; });
+      rbo.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+const rb = document.getElementById('ratingBars');
+if (rb) rbo.observe(rb);
+
+// SLIDER
+const track = document.getElementById('sliderTrack');
+const cards = track.querySelectorAll('.review-card');
+const dotsWrap = document.getElementById('sliderDots');
+let current = 0;
+const visCount = () => window.innerWidth < 640 ? 1 : window.innerWidth < 960 ? 2 : 3;
+const total = () => Math.max(1, cards.length - visCount() + 1);
+function buildDots() {
+  dotsWrap.innerHTML = '';
+  for (let i = 0; i < total(); i++) {
+    const d = document.createElement('div');
+    d.className = 'slider-dot' + (i === current ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  }
+}
+function goTo(n) {
+  current = Math.max(0, Math.min(n, total() - 1));
+  track.style.transform = `translateX(-${current * (cards[0].offsetWidth + 22)}px)`;
+  dotsWrap.querySelectorAll('.slider-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+}
+document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1 >= total() ? 0 : current + 1));
+buildDots();
+window.addEventListener('resize', () => { buildDots(); goTo(0); });
+setInterval(() => goTo(current + 1 >= total() ? 0 : current + 1), 4500);
+
+// WHATSAPP ORDER MODAL
+let qty = 1;
+const PRICE = 20;
+// 👇 Replace with your WhatsApp number: 91 + your 10-digit number (e.g. 919876543210)
+const WA_NUMBER = 'XXXXXXXXXX';
+
+function openOrder() {
+  qty = 1; updateQty();
+  document.getElementById('orderModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeOrder() {
+  document.getElementById('orderModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function changeQty(n) { qty = Math.max(1, qty + n); updateQty(); }
+function updateQty() {
+  document.getElementById('qtyNum').textContent = qty;
+  document.getElementById('qtyTotal').textContent = '₹' + (qty * PRICE);
+  const msg = encodeURIComponent('Hello Dahiko! 🙏\n\nI want to order:\n🥛 Dahiko Sugam x' + qty + ' bottle' + (qty > 1 ? 's' : '') + '\n💰 Total: ₹' + (qty * PRICE) + '\n\nKindly confirm my order. Thank you!');
+  document.getElementById('waBtn').href = 'https://wa.me/' + WA_NUMBER + '?text=' + msg;
+}
+document.getElementById('orderModal').addEventListener('click', function(e) {
+  if (e.target === this) closeOrder();
+});
+</script>
+</body>
+</html>
