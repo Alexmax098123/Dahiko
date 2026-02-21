@@ -208,9 +208,6 @@ footer ul li a:hover { color: var(--yellow-light); }
 .msg-box { background: #f0fdf8; border: 1.5px solid rgba(46,204,135,0.3); border-radius: 12px; padding: 12px 14px; font-size: 0.83rem; font-weight: 700; color: #333; line-height: 1.75; white-space: pre-line; text-align: left; margin-bottom: 10px; }
 
 /* Buttons */
-.copy-btn { width: 100%; background: var(--mint); color: var(--green-dark); border: 1.5px solid rgba(46,204,135,0.4); font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.88rem; padding: 12px 20px; border-radius: 50px; cursor: pointer; transition: all 0.25s; margin-bottom: 8px; }
-.copy-btn:hover { background: var(--green-light); color: white; border-color: var(--green-light); }
-.copy-btn.copied { background: var(--green); color: white; border-color: var(--green); }
 .modal-wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; background: linear-gradient(135deg, #25D366, #1aab53); color: white; border: none; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.92rem; padding: 14px 24px; border-radius: 50px; cursor: pointer; transition: all 0.25s; box-shadow: 0 6px 24px rgba(37,211,102,0.35); text-decoration: none; }
 .modal-wa-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(37,211,102,0.5); }
 .modal-note { margin-top: 10px; font-size: 0.7rem; color: #ccc; font-weight: 700; line-height: 1.5; }
@@ -385,7 +382,7 @@ footer ul li a:hover { color: var(--yellow-light); }
   </div>
   <div class="cta-btns">
     <button class="cta-order-btn" onclick="openOrder()">🛒 Order Now</button>
-    <a href="mailto:dahiko@gmail.com" class="cta-email-btn">✉️ Email Us</a>
+    <a href="/cdn-cgi/l/email-protection#aecacfc6c7c5c1eec9c3cfc7c280cdc1c3" class="cta-email-btn">✉️ Email Us</a>
   </div>
 </div>
 
@@ -404,7 +401,7 @@ footer ul li a:hover { color: var(--yellow-light); }
       <h4>Contact</h4>
       <ul>
         <li><span>Chandesri, Ujjain (MP) – 455001</span></li>
-        <li><a href="mailto:dahiko@gmail.com">dahiko@gmail.com</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#2c484d444547436c4b414d4540024f4341"><span class="__cf_email__" data-cfemail="6400050c0d0f0b240309050d084a070b09">[email&#160;protected]</span></a></li>
         <li><span>FSSAI: 21426790000279</span></li>
       </ul>
     </div>
@@ -459,20 +456,17 @@ footer ul li a:hover { color: var(--yellow-light); }
     <div class="msg-preview-label">Your Order Message Preview</div>
     <div class="msg-box" id="msgBox">Fill in your details above to see your order message here...</div>
 
-    <!-- Copy button -->
-    <button class="copy-btn" id="copyBtn" onclick="copyMsg()">📋 Step 1 — Copy Order Message</button>
-
     <!-- WhatsApp group button -->
-    <a class="modal-wa-btn" href="https://chat.whatsapp.com/FuKy7kKwv0UCrV9j1UBz3K" target="_blank">
+    <a class="modal-wa-btn" id="waGroupBtn" href="https://chat.whatsapp.com/FuKy7kKwv0UCrV9j1UBz3K" target="_blank" onclick="return handleWAClick(event)">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.107 1.51 5.833L0 24l6.335-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.373l-.36-.214-3.724.972.996-3.632-.235-.374A9.818 9.818 0 0112 2.182c5.427 0 9.818 4.391 9.818 9.818 0 5.428-4.391 9.818-9.818 9.818z"/></svg>
-      Step 2 — Open Dahiko WhatsApp Group
+      Open Dahiko WhatsApp Group &amp; Order
     </a>
-    <div class="modal-note">Paste the copied message in the group and send — we'll confirm your order shortly! 🙏</div>
+    <div class="modal-note">Your message is auto-copied when you tap above — just paste &amp; send in the group! 🙏</div>
   </div>
 </div>
 
-<script>
-// ── CURSOR ──
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// CURSOR
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
 let mx = -200, my = -200, rx = -200, ry = -200;
@@ -484,13 +478,13 @@ document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; })
   requestAnimationFrame(tick);
 })();
 
-// ── SCROLL REVEAL ──
+// SCROLL REVEAL
 const obs = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 90); } });
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ── NUTRITION BARS ──
+// NUTRITION BARS
 const nutObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -501,7 +495,7 @@ const nutObs = new IntersectionObserver(entries => {
 }, { threshold: 0.3 });
 document.querySelectorAll('.nut-row').forEach(r => nutObs.observe(r));
 
-// ── RATING BARS ──
+// RATING BARS
 const rbo = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -513,7 +507,7 @@ const rbo = new IntersectionObserver(entries => {
 const rb = document.getElementById('ratingBars');
 if (rb) rbo.observe(rb);
 
-// ── SLIDER ──
+// SLIDER
 const track = document.getElementById('sliderTrack');
 const cards = track.querySelectorAll('.review-card');
 const dotsWrap = document.getElementById('sliderDots');
@@ -540,15 +534,15 @@ buildDots();
 window.addEventListener('resize', () => { buildDots(); goTo(0); });
 setInterval(() => goTo(current + 1 >= total() ? 0 : current + 1), 4500);
 
-// ── ORDER MODAL ──
+// ORDER MODAL
 let qty = 1;
 const PRICE = 20;
 
 function buildMsg() {
-  const name = document.getElementById('custName').value.trim();
-  const addr = document.getElementById('custAddr').value.trim();
+  var name = document.getElementById('custName').value.trim();
+  var addr = document.getElementById('custAddr').value.trim();
   if (!name && !addr) return 'Fill in your details above to see your order message here...';
-  let msg = 'Hello Dahiko! 🙏\n\n';
+  var msg = 'Hello Dahiko! 🙏\n\n';
   msg += '━━━━━━━━━━━━━━━━\n';
   msg += '🛒 NEW ORDER\n';
   msg += '━━━━━━━━━━━━━━━━\n\n';
@@ -563,9 +557,6 @@ function buildMsg() {
 
 function updateMsg() {
   document.getElementById('msgBox').textContent = buildMsg();
-  const btn = document.getElementById('copyBtn');
-  btn.textContent = '📋 Step 1 — Copy Order Message';
-  btn.classList.remove('copied');
 }
 
 function changeQty(n) {
@@ -583,8 +574,6 @@ function openOrder() {
   document.getElementById('custAddr').value = '';
   document.getElementById('grpName').classList.remove('error');
   document.getElementById('grpAddr').classList.remove('error');
-  document.getElementById('copyBtn').textContent = '📋 Step 1 — Copy Order Message';
-  document.getElementById('copyBtn').classList.remove('copied');
   updateMsg();
   document.getElementById('orderModal').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -595,18 +584,17 @@ function closeOrder() {
   document.body.style.overflow = '';
 }
 
-function copyMsg() {
-  const name = document.getElementById('custName').value.trim();
-  const addr = document.getElementById('custAddr').value.trim();
-  let valid = true;
+// Auto-copy message when WhatsApp group button is clicked
+function handleWAClick(e) {
+  var name = document.getElementById('custName').value.trim();
+  var addr = document.getElementById('custAddr').value.trim();
+  var valid = true;
   if (!name) { document.getElementById('grpName').classList.add('error'); valid = false; } else { document.getElementById('grpName').classList.remove('error'); }
   if (!addr) { document.getElementById('grpAddr').classList.add('error'); valid = false; } else { document.getElementById('grpAddr').classList.remove('error'); }
-  if (!valid) return;
-  navigator.clipboard.writeText(buildMsg()).then(() => {
-    const btn = document.getElementById('copyBtn');
-    btn.textContent = '✅ Copied! Now click Step 2 below';
-    btn.classList.add('copied');
-  });
+  if (!valid) { e.preventDefault(); return false; }
+  // Auto-copy the full order message to clipboard
+  navigator.clipboard.writeText(buildMsg());
+  return true; // allow link to open WhatsApp group
 }
 
 document.getElementById('orderModal').addEventListener('click', function(e) {
